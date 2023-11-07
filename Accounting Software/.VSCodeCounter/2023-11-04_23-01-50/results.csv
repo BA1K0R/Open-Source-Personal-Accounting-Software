@@ -1,0 +1,32 @@
+"filename", "language", "Python", "Lua", "CSS", "XML", "JSON", "HTML", "comment", "blank", "total"
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\build\main\xref-main.html", "HTML", 0, 0, 0, 0, 0, 30034, 0, 5286, 35320
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\customtkinter\assets\themes\blue.json", "JSON", 0, 0, 0, 0, 155, 0, 0, 1, 156
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\customtkinter\assets\themes\dark-blue.json", "JSON", 0, 0, 0, 0, 155, 0, 0, 1, 156
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\customtkinter\assets\themes\green.json", "JSON", 0, 0, 0, 0, 155, 0, 0, 1, 156
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\back-symbolic.svg", "XML", 0, 0, 0, 45, 0, 0, 1, 1, 47
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\back.svg", "XML", 0, 0, 0, 45, 0, 0, 1, 1, 47
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\filesave-symbolic.svg", "XML", 0, 0, 0, 67, 0, 0, 1, 1, 69
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\filesave.svg", "XML", 0, 0, 0, 67, 0, 0, 1, 1, 69
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\forward-symbolic.svg", "XML", 0, 0, 0, 45, 0, 0, 1, 1, 47
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\forward.svg", "XML", 0, 0, 0, 45, 0, 0, 1, 1, 47
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\hand.svg", "XML", 0, 0, 0, 129, 0, 0, 1, 0, 130
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\help-symbolic.svg", "XML", 0, 0, 0, 51, 0, 0, 1, 1, 53
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\help.svg", "XML", 0, 0, 0, 51, 0, 0, 1, 1, 53
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\home-symbolic.svg", "XML", 0, 0, 0, 58, 0, 0, 1, 1, 60
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\home.svg", "XML", 0, 0, 0, 58, 0, 0, 1, 1, 60
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\matplotlib.svg", "XML", 0, 0, 0, 3170, 0, 0, 1, 1, 3172
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\move-symbolic.svg", "XML", 0, 0, 0, 72, 0, 0, 1, 1, 74
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\move.svg", "XML", 0, 0, 0, 72, 0, 0, 1, 1, 74
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\qt4_editor_options.svg", "XML", 0, 0, 0, 47, 0, 0, 1, 1, 49
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\subplots-symbolic.svg", "XML", 0, 0, 0, 80, 0, 0, 1, 1, 82
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\subplots.svg", "XML", 0, 0, 0, 80, 0, 0, 1, 1, 82
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\zoom_to_rect-symbolic.svg", "XML", 0, 0, 0, 39, 0, 0, 1, 1, 41
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\images\zoom_to_rect.svg", "XML", 0, 0, 0, 39, 0, 0, 1, 1, 41
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\kpsewhich.lua", "Lua", 0, 2, 0, 0, 0, 0, 1, 1, 4
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\dist\main\_internal\matplotlib\mpl-data\plot_directive\plot_directive.css", "CSS", 0, 0, 4, 0, 0, 0, 11, 2, 17
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\financials.py", "Python", 92, 0, 0, 0, 0, 0, 5, 20, 117
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\graphing.py", "Python", 16, 0, 0, 0, 0, 0, 0, 5, 21
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\gui.py", "Python", 290, 0, 0, 0, 0, 0, 26, 83, 399
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\inventory.py", "Python", 67, 0, 0, 0, 0, 0, 12, 15, 94
+"c:\Users\nicho\Desktop\python\Tradelands Accounting\main.pyw", "Python", 36, 0, 0, 0, 0, 0, 1, 17, 54
+"Total", "-", 501, 2, 4, 4260, 465, 30034, 75, 5450, 40791

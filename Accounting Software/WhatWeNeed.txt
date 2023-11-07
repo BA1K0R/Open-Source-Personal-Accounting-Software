@@ -1,0 +1,95 @@
+Profit And Loss Statement
+Balance Sheet
+Cash-Flow Statement
+
+Inventory Management
+
+Unnecessary 
+Tax Return
+Aging Reports
+
+
+Ability to enter purchases into system, automatically have it add to inventory and subtract capital, add item and cost to list of purchases
+Ability to enter sales into system, automatically take from inventory and add to capital, add item and revenue to list of sales, Calculate Profit
+
+Need to Add :
+    Encrypted Data (Should prolly wait and do this last)
+    Should try to condense to one singular data file <----------------------------------------------\
+    Add ability to delete transanctions                                                             |
+    Should add ability to import data from a standard format (Should prolly do at same time as this)|
+
+Currently :
+v 0.1
+    one func that can add and subtract items and amounts and costs
+    auto saving and loading
+
+v 0.2
+    one func used for both sales and purchases, accurates adds and subtracts amounts and costs
+    auto saving and loading
+    does not track revenues or profits
+
+v 0.3
+    Revenues and profits roughly tracked by adding to prof during a sale and taking away with a purchase as well as adding to revenue the price of a sale
+    Started on GUI
+    Financial data being loaded and displayed, fincancial data updates whenever a change is made
+
+v 0.4
+    Fixed the stupid fucking goddamn inventory item duplication that was happening
+    That is all.
+    Best update. 
+
+v 0.5
+    Upgrade to Custom TkInter
+    Created mockup for ui
+    c:\Users\nicho\Documents\AccSoftwareUIMockUp.png
+
+v 0.6
+    Custom TkInter Mockup Made and UI Made
+    Ability to add transactions as UI elements
+    Need to hookup to the back end
+    Frontend Basically complete for now
+    Need to save transactions in their own format, have them load upon opening
+
+v 0.7
+    Backend fully hooked up, able to load data, change data, and save data
+    need to implement way to clear all data from gui
+    Transactions are now saved and loaded upon startup
+    Added function to clear transaction history
+
+v 0.8
+    Added tab for settings and dashboard
+    Added ability to clear data from the gui
+    Need to create tab for keeping track of inventory
+    Done after next update ??? (Just cosmetics after)
+
+v 0.8.1
+    Added inventory tab
+
+v 0.9
+    Added full functionality to inventory tab
+    auto updates and deletes
+
+v 1.0
+    Basics all complete
+    Still have two placesholders on dashboard for something
+    Could add graph to cash section showing account over time
+    Could add Icons instead of Text Buttons
+    Should add encrypted data and or data base capabilities
+
+v 1.1
+    Generates new data files if none are found
+    would previously crash the program
+
+v 1.2
+    Added graph that tracks cash over time
+    graph now updates whenever a transaction is recorded
+    Graph needs to be reset when data is reset
+    Need to add ability to delete transactions in case of mistakes (I keep making them)
+    Need to add ability to import data
+
+v 1.2.1
+    Graph resets along with data
+    if trans type is left as P/S everything horribly errors (Need to stop function from continuing if thats the value)
+
+v 1.2.2
+    stopped allowing transaction to go through if type was P/S
