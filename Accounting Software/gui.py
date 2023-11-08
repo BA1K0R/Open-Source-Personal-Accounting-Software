@@ -8,12 +8,17 @@ from financials import getFinancials
 from financials import clearFinancials
 from financials import adjustFinancials
 from financials import saveFinancials
+from financials import remFromCashArr
+from financials import adjCashArr
 
 from inventory import adjustInv
 from inventory import saveInvData
 from inventory import clearInv
 from inventory import getInvAmounts
 from inventory import getInvItems
+from inventory import remInvAmounts
+from inventory import remInvCosts
+from inventory import remInvItems
 
 import matplotlib
 matplotlib.use("TkAgg")
@@ -33,14 +38,32 @@ matplotlib.rcParams["axes.edgecolor"] = cashGraphTextColor
 version = "1.2.2"
 numTrans = 1
 itemNum = 0
+numDeleted = 0
 transactions = []
 transNumArray = [0]
 cashValsArray = [0]
+firstRun = True
 
 def clearTransactions() :
     transactionDataFile = open("transactionData.txt", "w")
 
+def saveTransactions() :
+    #print("Saving")
+    transactionDataFile = open("transactionData.txt","w")
+    for trans in transactions :
+        #print(trans)
+        transactionDataFile.write(trans + "\n")
 
+def updateCashSubPlot(plot,canvas) :
+    print("In updateCashSubPlot")
+    print(transNumArray, cashValsArray)
+    try :
+        plot.clear()
+        plot.plot(transNumArray,cashValsArray,color=cashGraphLineColor)
+        plot.set_facecolor("#2b2b2b")
+        canvas.draw()
+    except ValueError :
+        pass
 
 def genGUI(dataTable) :
 
@@ -164,6 +187,8 @@ def genGUI(dataTable) :
         profitNumLabel.configure(text=dataTable[3])
         cashBalanceNumLabel.configure(text="$" + dataTable[4])
 
+    
+    
     window = customtkinter.CTk()
     window.geometry("1280x800")
     window.title("Acc Build " + version)
@@ -178,10 +203,10 @@ def genGUI(dataTable) :
             
             if transTypeEntry.get() == "Purchase" : 
                 adjustInv(transItemEntry.get(), int(transAmountEntry.get()), int(transPriceEntry.get()))
-                adjustFinancials(0, 1, 0, -int(transPriceEntry.get()), -int(transPriceEntry.get()))
+                adjustFinancials(0, 1, 0, -int(transPriceEntry.get()), -int(transPriceEntry.get()), True)
             elif transTypeEntry.get() == "Sale" : 
                 adjustInv(transItemEntry.get(), -int(transAmountEntry.get()), -int(transPriceEntry.get()))
-                adjustFinancials(1, 0, int(transPriceEntry.get()), int(transPriceEntry.get()), int(transPriceEntry.get()))
+                adjustFinancials(1, 0, int(transPriceEntry.get()), int(transPriceEntry.get()), int(transPriceEntry.get()), True)
             saveTransactions()
             saveFinancials()
             saveInvData()
@@ -194,19 +219,24 @@ def genGUI(dataTable) :
             loadItemsInInv()
 
             transNumArray.append(numTrans)
+            print("In add transaction")
+            print(cashValsArray)
             cashValsArray.append(getFinancials()[5][numTrans-1])
+            print("AAAAA")
+            print(getFinancials()[5][numTrans-1])
+            print(cashValsArray)
             #print(transNumArray)
             #print(cashValsArray)
             numTrans += 1
             
-            cashSubplot.clear()
-            cashSubplot.plot(transNumArray,cashValsArray,color=cashGraphLineColor)
-            cashSubplot.set_facecolor("#2b2b2b")
-            cashGraphCanvas.draw()
+            updateCashSubPlot(cashSubplot,cashGraphCanvas)
         else :
             pass
 
     def loadTransactions() :
+        global firstRun
+        print("Start of load Transactions")
+        print(cashValsArray)
         global numTrans
         try :
             transactionDataFile = open("transactionData.txt", "r")
@@ -221,27 +251,92 @@ def genGUI(dataTable) :
             createTransaction(text[0],text[1],text[2],text[3],transactionHistoryScrollableFrame,numTrans)
             transactions.append(str(text[0]) + " " + str(text[1]) + " " + str(text[2]) + " " + str(text[3]))
             transNumArray.append(i)
-            #print(getFinancials()[5])
+            print("BBBB")
+            print(getFinancials()[5])
             #print(i)
+
             cashValsArray.append(getFinancials()[5][i - 1])
+            print(getFinancials()[5])
+
             i+=1
             numTrans+=1
-            cashSubplot.plot(transNumArray,cashValsArray,color=cashGraphLineColor)
-            cashSubplot.set_facecolor("#2b2b2b")
+            print(transNumArray)
+            updateCashSubPlot(cashSubplot,cashGraphCanvas)
             #print(transactions)
-        
+        print("End of load Transactions")
+        print(cashValsArray)
         transactionDataFile.close()
 
-    def saveTransactions() :
-        #print("Saving")
-        transactionDataFile = open("transactionData.txt","w")
-        for trans in transactions :
-            #print(trans)
-            transactionDataFile.write(trans + "\n")
+    def createTransaction(transType, item, amount, price, frame, transID) :
+        genFrame = customtkinter.CTkFrame(frame,width=400,height=50,fg_color="#333333")
+        genFrame.pack(anchor=W,pady=1, fill=X)
 
+        generatedText = str(transType) + " " + str(item) + " " + str(amount) + " " + str(price)
+        transactionElement = customtkinter.CTkLabel(genFrame, text=generatedText)
+        transactionElement.pack(anchor=W,pady=0.05)#(relwidth=0.8, relheight=1, relx=-.3, rely=0.05)
+
+        #Create Delete Button
+        delButton = customtkinter.CTkButton(genFrame,fg_color="Red",hover_color="Dark Red",text="Del",command=lambda: deleteTransaction(transType,item,amount,price,genFrame,transID))
+        delButton.place(relwidth=0.1,relheight=1,relx=0.85)
+
+    def deleteTransaction(transType,transItemName,transAmount,transPrice,transFrame,transID) :
+        global numTrans
+        global numDeleted
+        global itemNum
+        transFrame.destroy()
+
+        transNumArray.remove(int(numTrans-1))
+        
+
+        transactions.remove(transType + " " + transItemName + " " + transAmount + " " + transPrice)
+        if transType == "Purchase" :
+            adjustInv(transItemName, int(transAmount) * -1, int(transPrice) * -1)
+            adjustFinancials(0, -1, 0, int(transPrice), int(transPrice), False)
+            adjCashArr(transPrice,numTrans-2)
+        elif transType == "Sale" : 
+            adjustInv(transItemName, int(transAmount), int(transPrice))
+            adjustFinancials(1, 0, -int(transPrice), -int(transPrice), -int(transPrice), False)
+            adjCashArr(int(transPrice) * -1,numTrans-2)
+        else :
+            pass
+        
+        remFromCashArr(getFinancials()[5][numTrans-2])
+        if transType == "Purchase" :
+            cashValsArray.pop(-2)
+            cashValsArray[-1] += int(transPrice)
+        else :
+            cashValsArray.pop(-2)
+            cashValsArray[-1] -= int(transPrice)
+        #print(getFinancials()[5])
+        #print(cashValsArray)
+        #print(transNumArray, cashValsArray)
+
+        saveTransactions()
+        saveFinancials()
+        saveInvData()
+        updateFincancialDataTable()
+
+        #Delete all entries in inventory and remake them to update data
+        for child in inventoryFrame.winfo_children() :
+            child.destroy()
+        itemNum= 0
+        
+
+        #print(transNumArray)
+        #print(cashValsArray)
+        numTrans -= 1
+
+        #remInvAmounts(transItemName,transAmount)
+        #remInvCosts(transItemName,transPrice)
+        #remInvItems(transItemName)
+
+        loadItemsInInv()
+        updateCashSubPlot(cashSubplot,cashGraphCanvas)
+        numDeleted += 1
 
     def loadItemsInInv() :
         for item in getInvItems() :
+            #print(itemNum)
             createItemInInv(item, getInvAmounts()[itemNum], inventoryFrame)
 
 
@@ -321,6 +416,8 @@ def genGUI(dataTable) :
     cashGraphFigure = Figure(figsize=(11, 11), dpi=100)
     cashGraphFigure.set_facecolor("#2b2b2b")
     cashSubplot = cashGraphFigure.add_subplot(111)
+    print("startup Values")
+    print(transNumArray, cashValsArray)
     cashSubplot.plot(transNumArray,cashValsArray,color=cashGraphLineColor)
     cashSubplot.set_facecolor("#2b2b2b")
     
@@ -391,13 +488,11 @@ def genGUI(dataTable) :
     loadItemsInInv()
     window.mainloop()
 
-def createTransaction(transType, item, amount, price, frame, numTrans) :
-    generatedText = str(transType) + " " + str(item) + " " + str(amount) + " " + str(price)
-    transactionElement = customtkinter.CTkLabel(frame, text=generatedText)
-    transactionElement.pack(anchor=W,pady=0.02*numTrans)
+
 
 def createItemInInv(item, amount, frame) :
     global itemNum
+    #print(itemNum)
     itemElement = customtkinter.CTkLabel(frame,text=item)
     itemElement.pack(anchor=W,padx=20,pady=0.02*itemNum)
     amountElement = customtkinter.CTkLabel(frame,text=amount)
@@ -405,3 +500,5 @@ def createItemInInv(item, amount, frame) :
     itemNum += 1
 
 
+
+    saveTransactions()

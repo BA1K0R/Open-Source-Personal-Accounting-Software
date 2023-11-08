@@ -40,8 +40,10 @@ def loadFinancials() :
         
     
     for cashVal in cashOverTimeData :
+        print("eye")
+        print(cashArr)
         cashArr.append(int(cashVal))
-    print(cashArr)
+    #print(cashArr)
 
 
 def saveFinancials() :
@@ -64,7 +66,7 @@ def saveFinancials() :
     for cashVal in cashArr :
         cashOverTimeData.write(str(cashVal) + "\n")
 
-def adjustFinancials(sal, purch, rev, prof, cas) :
+def adjustFinancials(sal, purch, rev, prof, cas, app) :
     global sales
     global purchases
     global revenue
@@ -77,7 +79,10 @@ def adjustFinancials(sal, purch, rev, prof, cas) :
     revenue += rev
     profit += prof
     cash += cas
-    cashArr.append(cash)
+    if app == True :
+        cashArr.append(cash)
+    else : 
+        pass
 
 def clearFinancials () :
     global sales
@@ -96,6 +101,18 @@ def clearFinancials () :
 
     printFinancials()
     saveFinancials()
+
+def remFromCashArr(val) :
+    global cashArr
+    cashArr.remove(val)
+    #print("New Cash Array : " + str(cashArr))
+
+def adjCashArr(val, index) :
+    global cashArr
+    #print(str(cashArr) + " Initial")
+    print(index)
+    cashArr[index] = cashArr[index] + int(val)
+    #print(str(cashArr) + " Final")
 
 def getFinancials() :
     global sales

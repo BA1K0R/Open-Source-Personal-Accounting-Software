@@ -93,3 +93,9 @@ v 1.2.1
 
 v 1.2.2
     stopped allowing transaction to go through if type was P/S
+
+v 1.3
+    Added ability to delete transactions
+    this was hell
+    cant wait to change the save file structure and have to do it al again
+    

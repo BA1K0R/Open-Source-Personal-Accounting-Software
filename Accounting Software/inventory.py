@@ -73,7 +73,7 @@ def adjustInv(item, amount, cost) :
         amounts.append(amount)
         costs.append(cost)
 
-        #print("New Item added")
+        print("New Item added")
 
 def clearInv() :
     items.clear()
@@ -92,3 +92,15 @@ def appInvItems(item) :
 
 def appInvAmounts(amount) :
     amounts.append(amount)
+
+def remInvItems(item) :
+    i = items.index(item)
+    items.pop(i)
+
+def remInvAmounts(item,amount) :
+    id = items.index(item)
+    amounts[id] = int(amounts[id]) - int(amount)
+
+def remInvCosts(item,cost) :
+    id = items.index(item)
+    costs[id] = int(costs[id]) - int(cost)
