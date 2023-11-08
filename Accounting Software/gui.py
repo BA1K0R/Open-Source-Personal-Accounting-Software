@@ -35,7 +35,7 @@ matplotlib.rcParams["xtick.color"] = cashGraphTextColor
 matplotlib.rcParams["ytick.color"] = cashGraphTextColor
 matplotlib.rcParams["axes.edgecolor"] = cashGraphTextColor
 
-version = "1.2.2"
+version = "1.3"
 numTrans = 1
 itemNum = 0
 numDeleted = 0
